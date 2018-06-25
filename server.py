@@ -22,7 +22,7 @@ def create_email():
          flash("Email cannot be blank or email is not in database")
     	else:
 	        flash("Success! Welcome!")
-	        query = "INSERT INTO users(email, created_at, updated_at)VALUES(:email, :NOW(), :NOW())"
+	        query = "INSERT INTO users(email, created_at, updated_at)VALUES(:email, NOW(), NOW())"
 	        data = {
 	        		'email':request.form['email'],
 	        }
@@ -30,13 +30,22 @@ def create_email():
 	        return redirect('/success')
 	return redirect('/')
 
-@app.route('/success', methods=['POST'])
+#route cannot be post!
+@app.route('/success')
 def success():
 
 	query = "SELECT * FROM users"
 	users = mysql.query_db(query)
 
 	return render_template('success.html', emails=users)
+
+
+@app.route('/delete')
+def delete():
+	query = 'DELETE FROM users WHERE email=email'
+	mysql.query_db(query)
+
+	return redirect('/')
 
 	
 

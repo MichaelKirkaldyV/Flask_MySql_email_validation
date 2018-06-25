@@ -19,11 +19,11 @@
 		<input type="submit" name="delete" value="Delete">
 	</form>
 	<hr>
-	{{all_users}}
-	{%for users in all_users%}
+	{%for users in emails%}
 	<h3>{{users['email']}}</h3>
 	<h4>{{users['created_at']}}</h4>
 	{%endfor%}
+
 
 </body>
 </html>
