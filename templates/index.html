@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Email Validation</title>
+</head>
+<body>
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        {{message}}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+	<form action="create_email" method="post">
+		<label>Email: <input type="text" name="email"></label>
+		<input type="submit" name="submit" value="Submit">
+	</form>
+	<hr>
+	{{all_users}}
+	{%for users in all_users%}
+	<h3>{{users['email']}}</h3>
+	<h4>{{users['created_at']}}</h4>
+	{%endfor%}
+
+</body>
+</html>
